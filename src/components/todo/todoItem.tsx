@@ -10,11 +10,11 @@ interface Props {
 
 const TodoItem = ({ todo }: Props) => {
    return (
-      <>
-         <div>{todo.id}</div>
-         <div>{todo.title}</div>
-         <div>{todo.content}</div>
-      </>
+      <div className='todo_item'>
+         <div>id: {todo.id}</div>
+         <div>title: {todo.title}</div>
+         <div>content: {todo.content}</div>
+      </div>
    )
 }
 

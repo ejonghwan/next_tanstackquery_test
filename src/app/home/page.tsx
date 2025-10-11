@@ -24,13 +24,13 @@ const Home = async () => {
 
    // 서버에서 미리 가져온 데이터 
    await queryClient.prefetchQuery<TodosResponse>({
-      queryKey: ["todos"],
+      queryKey: ["todo_ssr"],
       queryFn: () =>
          fetch("http://localhost:3000/api/todos").then((r) => r.json()),
    });
 
    // 이렇게 캐시에서 꺼내와야함 -> 아니면 클라컴포에서 useQuery 캐시로 가져와도 됨. 클라컴포에서 캐시로 가져오는게 나은듯 
-   const todoData = queryClient.getQueryData<TodosResponse>(["todos"]);
+   const todoData = queryClient.getQueryData<TodosResponse>(["todo_ssr"]);
    console.log('todoData?', todoData)
 
    // const { data: todoData, isError: todoError, isSuccess: todoSuccess, isLoading: todoLoading } = useTodoAllList()
