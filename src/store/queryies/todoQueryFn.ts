@@ -30,6 +30,30 @@ export const ontodoAPI = async () => {
 
 
 
+export const onCreateTodoAPI = async () => {
+   try {
+      const url = new URL(`http://localhost:3000/api/todos`);
+
+      const res = await fetch(url.toString(), {
+         method: 'POST',
+         headers: {
+            'Content-Type': 'application/json',
+         },
+         cache: 'no-store',
+         next: { tags: ['todo'] },
+         credentials: 'include',
+      });
+
+      if (!res.ok) throw new Error('Network error');
+      return res.json();
+
+   } catch (e) {
+      console.error(e)
+   }
+};
+
+
+
 
 
 
