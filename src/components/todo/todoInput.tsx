@@ -1,8 +1,11 @@
 "use client"
 
+import { useCreateTodo } from '@/store/queryies/todoQueries'
 import React, { ChangeEvent, FormEvent, FormHTMLAttributes, useEffect, useState } from 'react'
 
 const TodoInput = () => {
+
+    const { mutate: todoMutate, isSuccess } = useCreateTodo()
 
     const [todoData, setTodoData] = useState({
         title: '',
@@ -15,7 +18,7 @@ const TodoInput = () => {
 
     const handleSubmit = (e: FormEvent) => {
         e.preventDefault();
-
+        todoMutate(todoData);
 
     }
 

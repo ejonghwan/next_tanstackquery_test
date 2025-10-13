@@ -30,7 +30,7 @@ export const ontodoAPI = async () => {
 
 
 
-export const onCreateTodoAPI = async () => {
+export const onCreateTodoAPI = async (payload: { content: string, title: string }) => {
    try {
       const url = new URL(`http://localhost:3000/api/todos`);
 
@@ -39,6 +39,7 @@ export const onCreateTodoAPI = async () => {
          headers: {
             'Content-Type': 'application/json',
          },
+         body: JSON.stringify({ title: payload.title, content: payload.content }),
          cache: 'no-store',
          next: { tags: ['todo'] },
          credentials: 'include',

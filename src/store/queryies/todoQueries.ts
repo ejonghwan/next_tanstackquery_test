@@ -3,7 +3,7 @@
 
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { todoKeys } from '@/store/queryies/todoKeys'
-import { ontodoAPI, } from '@/store/queryies/todoQueryFn'
+import { ontodoAPI, onCreateTodoAPI } from '@/store/queryies/todoQueryFn'
 
 
 
@@ -21,6 +21,17 @@ export const useTodoAllList = () => {
 
 }
 
+
+
+export const useCreateTodo = () => {
+
+   return useMutation({
+      mutationFn: (payload: { content: string; title: string }) => {
+         console.log('query fn ? ', payload)
+         return onCreateTodoAPI(payload)
+      },
+   })
+}
 
 
 
