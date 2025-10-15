@@ -25,11 +25,53 @@ export const useTodoAllList = () => {
 
 export const useCreateTodo = () => {
 
+   const queryClient = useQueryClient();
    return useMutation({
       mutationFn: (payload: { content: string; title: string }) => {
          console.log('query fn ? ', payload)
          return onCreateTodoAPI(payload)
       },
+      onSuccess: (data, variables) => {
+         //  queryClient.invalidateQueries({ queryKey: restaurantKeys.listAll(category) });
+         console.log('??????????????', data, variables)
+
+
+         // queryClient.setQueryData(restaurantKeys.listAll(category), (oldData: any) => {
+         //             console.log('oldData??', oldData, 'data?', data, '변수?', variables, 'category??', category)
+         //             console.log('캐시 ?', queryClient.getQueryCache().findAll());
+         //             if (!oldData) return;
+
+         //             // console.log('oldData??', oldData)
+         //             // console.log('data??', data)
+         //             // console.log('variables??', variables)
+
+         //             console.log('상세페이지에서 업데이트 ? ', oldData,)
+
+         //             // 리스트페이지일경우
+         //             if (type === "list") {
+         //                return {
+         //                   ...oldData,
+         //                   pages: oldData.pages.map((page) => ({
+         //                      ...page,
+         //                      data: page.data.map((restaurant) =>
+         //                         restaurant.id === variables.restaurantId
+         //                            ? { ...restaurant, like: data.data.like, hasMyLike: data.data.hasMyLike }
+         //                            : restaurant
+         //                      ),
+         //                   })),
+         //                };
+         //             }
+
+      },
+      //   // mutation이 실패한 경우
+      // onError: (err, newData, context) => {
+      //    // onMutate로부터 반환된 context를 사용하여 rollback
+      //    queryClient.setQueryData(['queryKey'], context.previousData)
+      // },
+      // onSettled: () => {
+      //    // 성공, 실패 여부에 관계 없이 refetch
+      //    queryClient.invalidateQueries({ queryKey: ['queryKey'] })
+      // }
    })
 }
 
@@ -242,3 +284,35 @@ export const useCreateTodo = () => {
 
 
 
+
+
+
+// const queryClient = useQueryClient(() => axios.post(`api/like/${id}`), {
+//    onMutate: async (id) => {
+//       // 'queryKey'로 진행 중인 refetch 취소하여 낙관적 업데이트를 덮어쓰지 않도록 함
+//       await queryClient.cancleQueries({
+//          queryKey: ['queryKey]
+//         })
+
+//       // 이전 데이터를 받아옴
+//       const previousData = queryClient.getQueryData(['queryKey']);
+
+//       // 새로운 값으로 낙관적 업데이트
+//       queryClient.setQueryData(['queryKey'], (prev) => !prev)
+
+//       return { previousData }
+//    },
+//    // mutation이 실패한 경우
+//    onError: (err, newData, context) => {
+//       // onMutate로부터 반환된 context를 사용하여 rollback
+//       queryClient.setQueryData(['queryKey'], context.previousData)
+//    },
+//    onSettled: () => {
+//       // 성공, 실패 여부에 관계 없이 refetch
+//       queryClient.invalidateQueries({ queryKey: ['queryKey'] })
+//    }
+// });
+
+// const deleteData = useMutation({
+
+// })
