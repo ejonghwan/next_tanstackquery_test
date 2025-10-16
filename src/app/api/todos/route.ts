@@ -37,12 +37,14 @@ export const GET = async (req: NextRequest) => {
 // */
 export const POST = async (req: NextRequest) => {
    // 프론트에서 오는게 req
-   const { title, content } = await req.json();
+   const { id, title, content } = await req.json();
    if (!title || !content) return NextResponse.json({ state: 'FAILUE', message: 'title을 넣어주세요', }, { status: 422 });
 
 
    //  const addedTodo = await addTodo({ title })
-   fetchedTodos = [...fetchedTodos, { title, content }]
+   fetchedTodos = [...fetchedTodos, { id, title, content }]
+
+   console.log('???', fetchedTodos)
    const res = {
       state: 'SUCCES',
       message: '추가',

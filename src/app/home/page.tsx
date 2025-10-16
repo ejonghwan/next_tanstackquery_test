@@ -26,12 +26,13 @@ const Home = async () => {
    await queryClient.prefetchQuery<TodosResponse>({
       queryKey: ["todo_ssr"],
       queryFn: () =>
-         fetch("http://localhost:3000/api/todos").then((r) => r.json()),
+         fetch("http://localhost:3000/api/todos").then(r => r.json()).then(r => r.data),
    });
 
    // 이렇게 캐시에서 꺼내와야함 -> 아니면 클라컴포에서 useQuery 캐시로 가져와도 됨. 클라컴포에서 캐시로 가져오는게 나은듯 
-   const todoData = queryClient.getQueryData<TodosResponse>(["todo_ssr"]);
-   console.log('todoData?', todoData)
+   // const todoData = queryClient.getQueryData<TodosResponse>(["todo_ssr"]);
+
+   // console.log('todoData?', todoData)
 
    // const { data: todoData, isError: todoError, isSuccess: todoSuccess, isLoading: todoLoading } = useTodoAllList()
 
@@ -45,7 +46,8 @@ const Home = async () => {
          <h1>Home</h1>
          <HydrationBoundary state={dehydrate(queryClient)}>
             {/* <TodoWrap data={todoData?.data} /> */}
-            <TodoWrap data={todoData?.data ?? []} />
+            {/* <TodoWrap data={todoData?.data ?? []} /> */}
+            <TodoWrap />
 
             {/* 아래 타입에러는 useQuery의 queryFn의 타입지정이 없기 떄문에 타입추론을 {} 이렇게 한다고.. 떄문에 제네릭으로 넣어주는게 베스트 */}
             {/* Property 'data' does not exist on type '{}' */}

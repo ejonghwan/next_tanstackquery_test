@@ -3,7 +3,7 @@
 
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { todoKeys } from '@/store/queryies/todoKeys'
-import { ontodoAPI, onCreateTodoAPI } from '@/store/queryies/todoQueryFn'
+import { ontodoAPI, onCreateTodoAPI, ontodoAPI_ssr } from '@/store/queryies/todoQueryFn'
 
 
 
@@ -23,18 +23,37 @@ export const useTodoAllList = () => {
 
 
 
+
+// ssr
+export const useTodoAllList_ssr = () => {
+   return useQuery({
+      queryKey: ['todo_ssr'],
+      queryFn: () => ontodoAPI_ssr(),
+      staleTime: 60 * 1000 * 10, //10분
+      gcTime: 60 * 1000 * 11,
+      // staleTime: 3600,
+      // gcTime: 4000,
+   })
+
+}
+
+
+
 export const useCreateTodo = () => {
 
    const queryClient = useQueryClient();
    return useMutation({
-      mutationFn: (payload: { content: string; title: string }) => {
+      mutationFn: (payload: { id: number; content: string; title: string }) => {
          console.log('query fn ? ', payload)
          return onCreateTodoAPI(payload)
       },
       onSuccess: (data, variables) => {
-         //  queryClient.invalidateQueries({ queryKey: restaurantKeys.listAll(category) });
          console.log('??????????????', data, variables)
-
+         queryClient.setQueryData(['todo_ssr'], (oldData: any) => {
+            console.log('oldData?', oldData)
+            return [...oldData, variables]
+         })
+         // queryClient.invalidateQueries({ queryKey: ['todo_ssr'] });
 
          // queryClient.setQueryData(restaurantKeys.listAll(category), (oldData: any) => {
          //             console.log('oldData??', oldData, 'data?', data, '변수?', variables, 'category??', category)

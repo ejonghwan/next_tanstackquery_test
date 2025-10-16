@@ -3,11 +3,14 @@
 import { useCreateTodo } from '@/store/queryies/todoQueries'
 import React, { ChangeEvent, FormEvent, FormHTMLAttributes, useEffect, useState } from 'react'
 
+let c = 4;
+
 const TodoInput = () => {
 
     const { mutate: todoMutate, isSuccess } = useCreateTodo()
 
     const [todoData, setTodoData] = useState({
+        id: c++,
         title: '',
         content: '',
     })

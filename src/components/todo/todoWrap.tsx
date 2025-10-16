@@ -1,6 +1,9 @@
+'use client'
+
 import React from 'react'
 import TodoItem from './todoItem'
 import TodoInput from './todoInput';
+import { useTodoAllList_ssr } from '@/store/queryies/todoQueries';
 
 
 interface Props {
@@ -8,10 +11,14 @@ interface Props {
 }
 
 
-const TodoWrap = ({ data }: Props) => {
+// const TodoWrap = ({ data }: Props) => {
+const TodoWrap = () => {
 
-   console.log('data?', data)
+   // console.log('data?', data)
 
+   const { data } = useTodoAllList_ssr()
+
+   console.log('todo wrap data?', data)
 
 
    return (
