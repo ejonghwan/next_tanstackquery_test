@@ -29,12 +29,26 @@ export const useTodoAllList_ssr = () => {
    return useQuery({
       queryKey: ['todo_ssr'],
       queryFn: () => ontodoAPI_ssr(),
-      staleTime: 60 * 1000 * 10, //10분
-      gcTime: 60 * 1000 * 11,
-      // staleTime: 3600,
-      // gcTime: 4000,
-   })
+      // staleTime: 60 * 1000 * 10, //10분
+      // gcTime: 60 * 1000 * 11,
+      staleTime: 3600,
+      gcTime: 4000,
+      //   staleTime: 0,           // 즉시 stale 상태 (항상 refetch 준비)
+      //   refetchOnMount: true,       // 컴포넌트가 다시 마운트될 때 refetch
+      //   refetchOnWindowFocus: true, // 창에 포커스 돌아올 때 refetch
+      //   refetchOnReconnect: true,   // 네트워크 다시 연결될 때 refetch
 
+      // 데이터를 가져온 후 1분 동안은 fresh 상태
+
+      // 1분이 지나면 stale 상태
+
+      // 하지만 그 시점에 아무 이벤트가 없으면 refetch는 일어나지 않음
+
+      // 만약 그 후에
+      // 🔹 새로고침하거나
+      // 🔹 페이지 이동 후 다시 돌아오거나
+      // 🔹 탭 포커스가 다시 돌아오면
+   })
 }
 
 
@@ -49,7 +63,7 @@ export const useCreateTodo = () => {
       },
       onSuccess: (data, variables) => {
          console.log('??????????????', data, variables)
-         queryClient.setQueryData(['todo_ssr'], (oldData: any) => {
+         queryClient.setQueryData(['todo_ssr'], (oldData: { id: number; title: string; content: string }[]) => {
             console.log('oldData?', oldData)
             return [...oldData, variables]
          })

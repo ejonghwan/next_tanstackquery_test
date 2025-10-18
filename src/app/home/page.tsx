@@ -38,6 +38,13 @@ const Home = async () => {
 
 
 
+   /*
+      탄스택쿼리 정리 
+      1. prefetch 단계에서 가져온 SSR 같은 경우에는 queryClient.prefetchQuery 메서드로 querykey에 캐시 
+      2. getQueryData로 업데이트 : 자동 업데이트 안되기 때문에 useQuery로 가져오는게 좋음 
+      3. useQuery로 prefetch 단계에서 캐시에 저장한 data 가져옴  
+   */
+
 
 
 

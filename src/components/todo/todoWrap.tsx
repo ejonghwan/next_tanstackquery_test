@@ -21,11 +21,12 @@ const TodoWrap = () => {
    console.log('todo wrap data?', data)
 
 
+
    return (
       <div className='todo_wrap'>
          <TodoInput />
 
-         <div>{data?.map(item => <TodoItem key={item.id} todo={item} />)}</div>
+         <div>{data?.map((item: { id: number; title: string; content: string }) => <TodoItem key={item.id} todo={item} />)}</div>
 
       </div>
    )
