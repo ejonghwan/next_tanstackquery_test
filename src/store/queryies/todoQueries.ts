@@ -13,10 +13,10 @@ export const useTodoAllList = () => {
    return useQuery({
       queryKey: todoKeys.all,
       queryFn: () => ontodoAPI(),
-      staleTime: 60 * 1000 * 10, //10분
-      gcTime: 60 * 1000 * 11,
-      // staleTime: 3600,
-      // gcTime: 4000,
+      // staleTime: 60 * 1000 * 10, //10분
+      // gcTime: 60 * 1000 * 11,
+      staleTime: 60 * 100,
+      gcTime: 60 * 200,
    })
 
 }
@@ -31,8 +31,8 @@ export const useTodoAllList_ssr = () => {
       queryFn: () => ontodoAPI_ssr(),
       // staleTime: 60 * 1000 * 10, //10분
       // gcTime: 60 * 1000 * 11,
-      staleTime: 60 * 100,
-      gcTime: 4000,
+      staleTime: 60 * 300,
+      gcTime: 60 * 500,
       //   staleTime: 0,           // 즉시 stale 상태 (항상 refetch 준비)
       //   refetchOnMount: true,       // 컴포넌트가 다시 마운트될 때 refetch
       //   refetchOnWindowFocus: true, // 창에 포커스 돌아올 때 refetch

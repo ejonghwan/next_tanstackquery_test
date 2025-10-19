@@ -3,7 +3,6 @@
 import React from 'react'
 import TodoItem from './todoItem'
 import TodoInput from './todoInput';
-import { useTodoAllList_ssr } from '@/store/queryies/todoQueries';
 import { useTodoAllList } from '@/store/queryies/todoQueries'
 
 interface Props {
@@ -14,20 +13,16 @@ interface Props {
 // const TodoWrap = ({ data }: Props) => {
 const TodoWrap = () => {
 
-   // console.log('data?', data)
+   // csr test
+   const { data: todoData, isError: todoError, isSuccess: todoSuccess, isLoading: todoLoading } = useTodoAllList()
 
-   // ssr test
-   const { data: todoData } = useTodoAllList_ssr()
-
-   // console.log('todo wrap data?', data)
-
-
+   console.log('todoData?', todoData)
 
    return (
       <div className='todo_wrap'>
          <TodoInput />
 
-         <div>{todoData?.map((item: { id: number; title: string; content: string }) => <TodoItem key={item.id} todo={item} />)}</div>
+         <div>{todoData?.data?.map((item: { id: number; title: string; content: string }) => <TodoItem key={item.id} todo={item} />)}</div>
 
       </div>
    )

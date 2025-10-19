@@ -5,6 +5,7 @@ import TodoWrap from '@/components/todo/todoWrap'
 import { useTodoAllList } from '@/store/queryies/todoQueries'
 
 import { dehydrate, HydrationBoundary, QueryClient } from "@tanstack/react-query";
+import Link from 'next/link';
 
 
 type Todo = {
@@ -51,6 +52,11 @@ const Home = async () => {
    return (
       <div>
          <h1>Home</h1>
+         <div>
+            <Link href={'/'} style={{ padding: "10px", border: "1px solid #ddd", marginRight: '10px' }}>main</Link>
+            <Link href={'/home'} style={{ padding: "10px", border: "1px solid #ddd", marginRight: '10px' }}>ssr page</Link>
+            <Link href={'/home_csr'} style={{ padding: "10px", border: "1px solid #ddd", marginRight: '10px' }}>csr page</Link>
+         </div>
          <HydrationBoundary state={dehydrate(queryClient)}>
             {/* <TodoWrap data={todoData?.data} /> */}
             {/* <TodoWrap data={todoData?.data ?? []} /> */}

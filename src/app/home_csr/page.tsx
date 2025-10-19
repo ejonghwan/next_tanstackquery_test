@@ -1,10 +1,10 @@
 "use client"
 
 import React from 'react'
-import TodoWrap from '@/components/todo/todoWrap'
-import { useTodoAllList } from '@/store/queryies/todoQueries'
+import TodoWrap_CSR from '@/components/todo/todoWrap_csr'
 
 import { dehydrate, HydrationBoundary, QueryClient } from "@tanstack/react-query";
+import Link from 'next/link';
 
 
 
@@ -12,15 +12,20 @@ const Home = () => {
 
 
 
-   const { data: todoData, isError: todoError, isSuccess: todoSuccess, isLoading: todoLoading } = useTodoAllList()
+   // const { data: todoData, isError: todoError, isSuccess: todoSuccess, isLoading: todoLoading } = useTodoAllList()
 
 
 
    return (
       <div>
          <h1>Home</h1>
+         <div>
+            <Link href={'/'} style={{ padding: "10px", border: "1px solid #ddd", marginRight: '10px' }}>main</Link>
+            <Link href={'/home'} style={{ padding: "10px", border: "1px solid #ddd", marginRight: '10px' }}>ssr page</Link>
+            <Link href={'/home_csr'} style={{ padding: "10px", border: "1px solid #ddd", marginRight: '10px' }}>csr page</Link>
+         </div>
          {/* <TodoWrap data={todoData?.data} /> */}
-         <TodoWrap data={todoData?.data ?? []} />
+         <TodoWrap_CSR />
 
       </div>
    )
