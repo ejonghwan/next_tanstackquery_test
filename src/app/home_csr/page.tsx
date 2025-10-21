@@ -23,6 +23,7 @@ const Home = () => {
             <Link href={'/'} style={{ padding: "10px", border: "1px solid #ddd", marginRight: '10px' }}>main</Link>
             <Link href={'/home'} style={{ padding: "10px", border: "1px solid #ddd", marginRight: '10px' }}>ssr page</Link>
             <Link href={'/home_csr'} style={{ padding: "10px", border: "1px solid #ddd", marginRight: '10px' }}>csr page</Link>
+            <Link href={'/home_infinity'} style={{ padding: "10px", border: "1px solid #ddd", marginRight: '10px' }}>infinity page</Link>
          </div>
          {/* <TodoWrap data={todoData?.data} /> */}
          <TodoWrap_CSR />

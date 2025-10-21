@@ -30,14 +30,14 @@ const Home = async () => {
          fetch("http://localhost:3000/api/todos").then(r => r.json()).then(r => r.data),
    });
 
+
+
    // 이렇게 캐시에서 꺼내와야함 -> 아니면 클라컴포에서 useQuery 캐시로 가져와도 됨. 클라컴포에서 캐시로 가져오는게 나은듯 
    // const todoData = queryClient.getQueryData<TodosResponse>(["todo_ssr"]);
 
    // console.log('todoData?', todoData)
 
    // const { data: todoData, isError: todoError, isSuccess: todoSuccess, isLoading: todoLoading } = useTodoAllList()
-
-
 
    /*
       탄스택쿼리 정리 
@@ -56,6 +56,7 @@ const Home = async () => {
             <Link href={'/'} style={{ padding: "10px", border: "1px solid #ddd", marginRight: '10px' }}>main</Link>
             <Link href={'/home'} style={{ padding: "10px", border: "1px solid #ddd", marginRight: '10px' }}>ssr page</Link>
             <Link href={'/home_csr'} style={{ padding: "10px", border: "1px solid #ddd", marginRight: '10px' }}>csr page</Link>
+            <Link href={'/home_infinity'} style={{ padding: "10px", border: "1px solid #ddd", marginRight: '10px' }}>infinity page</Link>
          </div>
          <HydrationBoundary state={dehydrate(queryClient)}>
             {/* <TodoWrap data={todoData?.data} /> */}

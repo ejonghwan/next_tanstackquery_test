@@ -1,11 +1,46 @@
 
 
 
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
+import { useMutation, useQuery, useQueryClient, useInfiniteQuery } from '@tanstack/react-query'
 import { todoKeys } from '@/store/queryies/todoKeys'
 import { ontodoAPI, onCreateTodoAPI, ontodoAPI_ssr } from '@/store/queryies/todoQueryFn'
 
 
+
+// infinity
+export const useTodoInfiniry = (restaurantId: string, limet: number, userId: string) => {
+
+
+   console.log('res??', restaurantId)
+
+   return useInfiniteQuery({
+      queryKey: todoKeys.infinity,
+      queryFn: ({ pageParam }) => {
+         const { cursor, cursorId } = pageParam || {};
+         // pageParam은 요청 보낼 때의 값
+         // console.log('언제 실행되는지 ?', pageParam)
+         return ontodoAPI()
+      },
+
+      getNextPageParam: (lastPage) => {
+         // 백엔드에서 넘겨준 다음 커서 정보
+         // console.log('백엔드에서 넘겨준 다음 커서정보', lastPage)
+         // if (!lastPage?.nextCursor || !lastPage?.nextCursorId) return undefined;
+         // if (lastPage?.data?.length < limet) return undefined;
+         if (!lastPage.hasNext) return undefined;
+
+         return {
+            cursor: lastPage.nextCursor,
+            cursorId: lastPage.nextCursorId,
+         };
+      },
+      initialPageParam: {
+         cursor: null,
+         cursorId: null,
+      },
+      staleTime: 1000 * 60 * 10, //10분
+   });
+};
 
 
 export const useTodoAllList = () => {
