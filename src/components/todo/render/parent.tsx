@@ -24,7 +24,7 @@ const Parent = () => {
       age: 0
    })
 
-   const handleChange = (e) => {
+   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       const { name, value } = e.target
       setTest(prev => (
          {
@@ -111,6 +111,14 @@ const Parent = () => {
           <h2>피트니스 클럽 다니심?</h2>
          <p>gym: {gym.workout}</p>
          <button onClick={() => setIsGym(!isGym)}>Gym</button>
+
+
+         <br />
+         <br />
+         <br />
+         <br />
+         <br />
+         
 
       </div>
    )
