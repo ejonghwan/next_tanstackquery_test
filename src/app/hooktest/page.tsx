@@ -44,10 +44,32 @@ const Page = () => {
 
 
 
+   const [tt, setTT] = useState<{ a: number, b: number, c: number }>({ a: 0, b: 0, c: 0 })
+
+   useEffect(() => {
+      // setTT({ a: 1, b: 4 })
+      // setTT(prev => ({ ...prev, b: 4, c: 5 }))
+      handleClick()
+   }, [])
+
+   const handleClick = () => {
+      setTT(prev => ({ ...prev, b: 4, c: 5 }))
+   }
+
+   const [in, setIn] = useState()
+   const handleChange22 = () => {
+
+   }
+
 
 
    return (
       <div>
+         {tt.a} {tt.b} {tt.c}
+         <input type="text" onChange={handleChange22} />
+         <br />
+         <br />
+         <br />
 
          <input type="text" onChange={handleChange} value={text} />
          zz : {text}

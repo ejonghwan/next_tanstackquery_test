@@ -1,14 +1,30 @@
 "use client"
 
 import { useCreateTodo } from '@/store/queryies/todoQueries'
-import React, { ChangeEvent, FormEvent, FormHTMLAttributes, useEffect, useState } from 'react'
+import React, { ChangeEvent, FormEvent, FormHTMLAttributes, useCallback, useEffect, useState } from 'react'
+
+
+
 
 
 const TodoInput = () => {
+
+    const generateRandomString = useCallback((length: number) => {
+        const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        let result = '';
+        for (let i = 0; i < length; i++) {
+            const randomIndex = Math.floor(Math.random() * characters.length);
+            result += characters.charAt(randomIndex);
+        }
+        return result;
+    }, [])
+
+
+
     const { mutate: todoMutate, isSuccess } = useCreateTodo()
 
     const [todoData, setTodoData] = useState({
-        id: 4,
+        id: generateRandomString(10),
         title: '',
         content: '',
     })

@@ -7,7 +7,7 @@ import { useTodoAllList_ssr } from '@/store/queryies/todoQueries';
 import { useTodoAllList } from '@/store/queryies/todoQueries'
 
 interface Props {
-   data: { id: number; title: string; content: string }[];
+   data: { id: string; title: string; content: string }[];
 }
 
 
@@ -27,7 +27,7 @@ const TodoWrap = () => {
       <div className='todo_wrap'>
          <TodoInput />
 
-         <div>{todoData?.map((item: { id: number; title: string; content: string }) => <TodoItem key={item.id} todo={item} />)}</div>
+         <div>{todoData?.map((item: { id: string; title: string; content: string }) => <TodoItem key={item.id} todo={item} />)}</div>
 
       </div>
    )
