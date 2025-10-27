@@ -1,7 +1,7 @@
 "use client"
 
 import React, { ChangeEvent, useCallback, useEffect, useState } from 'react'
-
+import TestHooks from '@/hooks/testHooks'
 
 
 const Page = () => {
@@ -43,11 +43,14 @@ const Page = () => {
    useEffect(() => { console.log(b) }, [b])
 
 
-
+   const [hooks, handler] = TestHooks()
 
 
    return (
       <div>
+         test hooks
+         <button type='button' onClick={handler}>hoo: {hooks}</button>
+         <br />
 
          <input type="text" onChange={handleChange} value={text} />
          zz : {text}
