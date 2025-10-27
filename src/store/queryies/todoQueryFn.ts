@@ -57,7 +57,7 @@ export const ontodoAPI_ssr = async () => {
 
 
 
-export const onCreateTodoAPI = async (payload: { id: number; content: string, title: string }) => {
+export const onCreateTodoAPI = async (payload: { id: string; content: string, title: string }) => {
    try {
       const url = new URL(`http://localhost:3000/api/todos`);
 

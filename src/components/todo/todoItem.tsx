@@ -2,7 +2,7 @@ import React from 'react'
 
 interface Props {
    todo: {
-      id: number;
+      id: string;
       title: string;
       content: string;
    }

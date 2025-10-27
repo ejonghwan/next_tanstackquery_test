@@ -22,7 +22,7 @@ const TodoWrap = () => {
       <div className='todo_wrap'>
          <TodoInput />
 
-         <div>{todoData?.data?.map((item: { id: number; title: string; content: string }) => <TodoItem key={item.id} todo={item} />)}</div>
+         <div>{todoData?.data?.map((item: { id: string; title: string; content: string }) => <TodoItem key={item.id} todo={item} />)}</div>
 
       </div>
    )

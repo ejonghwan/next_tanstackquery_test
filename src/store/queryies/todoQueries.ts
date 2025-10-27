@@ -92,7 +92,7 @@ export const useCreateTodo = () => {
 
    const queryClient = useQueryClient();
    return useMutation({
-      mutationFn: (payload: { id: number; content: string; title: string }) => {
+      mutationFn: (payload: { id: string; content: string; title: string }) => {
          console.log('query fn ? ', payload)
          return onCreateTodoAPI(payload)
       },
