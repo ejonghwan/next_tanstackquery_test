@@ -57,7 +57,7 @@ const Page = () => {
       setTT(prev => ({ ...prev, b: 4, c: 5 }))
    }
 
-   const [in, setIn] = useState()
+   // const [in, setIn] = useState()
    const handleChange22 = () => {
 
    }
@@ -67,7 +67,7 @@ const Page = () => {
    return (
       <div>
          test hooks
-         < button type='button' onClick={handler} > hoo: {hooks}</button >
+         <button type='button' onClick={handler} > hoo: {hooks}</button >
          {tt.a} {tt.b} {tt.c}
          <input type="text" onChange={handleChange22} />
          <br />

@@ -2,12 +2,12 @@
 
 import React, { useEffect, useState } from 'react'
 
-const TestHooks = () => {
+const TestHooks = (): [number, () => void] => {
 
 
    const [aa, testAA] = useState(0)
 
-   const handleClick = (e: MouseEvent<HTMLButtonElement>) => {
+   const handleClick = () => {
       testAA(prev => prev + 1)
    }
 
