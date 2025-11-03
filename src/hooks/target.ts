@@ -1,22 +1,25 @@
 "use client"
 
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 
 
 interface Props {
    el: any;
 }
 
-const Target = ({ el }: Props) => {
+const useTarget = ({ el }: Props) => {
 
 
    const tRef = useRef(el)
 
    // tRef.current
+   useEffect(() => {
+      console.log(tRef.current)
+   }, [])
 
 
 
-   return
+   return tRef
 }
 
-export default Target
+export default useTarget
